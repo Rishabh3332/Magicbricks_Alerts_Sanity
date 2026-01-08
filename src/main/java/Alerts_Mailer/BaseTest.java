@@ -11,26 +11,10 @@ public class BaseTest {
 	    public static void setup()   {
 	       
 	        WebDriverManager.chromedriver().setup();
-			/*
-			 * ChromeOptions options = new ChromeOptions();
-			 * options.setExperimentalOption("excludeSwitches", new
-			 * String[]{"enable-automation"});
-			 * //options.setExperimentalOption("useAutomationExtension", false);
-			 * 
-			 * 
-			 * options.
-			 * addArguments("user-data-dir=C:\\Users\\Rishabh.Singh1\\AppData\\Local\\Google\\Chrome\\User Data"
-			 * ); options.addArguments("profile-directory=Profile 20");
-			 * options.addArguments("--disable-dev-shm-usage");
-			 * options.addArguments("--no-sandbox"); options.addArguments("--disable-gpu");
-			 * options.addArguments("--disable-software-rasterizer");
-			 * options.addArguments("--disable-notifications"); //
-			 * options.addArguments("--start-maximized");
-			 * options.addArguments("--remote-allow-origins=*");
-			 * 
-			 * WebDriver driver = new ChromeDriver(options);
-			 * driver.manage().window().maximize(); driver.get("https://mail.google.com");
-			 */
+
+//			  options.setExperimentalOption("excludeSwitches", new
+			  //options.setExperimentalOption("useAutomationExtension", false);
+			
 	        ChromeOptions options = new ChromeOptions();
 	       
 	        // Dedicated Selenium profile
@@ -40,6 +24,7 @@ public class BaseTest {
 
 	        driver = new ChromeDriver(options);
 	        driver.get("https://mail.google.com");
+	        System.out.println("➡ User Succesfully logged-in to GMAIL Account " );
 	        
 	    }
 

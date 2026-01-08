@@ -5,8 +5,10 @@
     <classes>
       <class name="Automation.GmailTest">
         <methods>
+          <include name="View_Photos_CTA_redirection"/>
           <include name="createPOMObject"/>
           <include name="Find_mail_and_open"/>
+          <include name="validatePropertyCountInMail"/>
         </methods>
       </class> <!-- Automation.GmailTest -->
     </classes>
