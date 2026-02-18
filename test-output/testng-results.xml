@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="9" total="11" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-08T15:12:01 IST" name="Default suite" finished-at="2026-01-08T15:12:24 IST" duration-ms="22661">
+  <suite started-at="2026-02-18T17:39:46 IST" name="Suite" finished-at="2026-02-18T17:39:56 IST" duration-ms="9503">
     <groups>
     </groups>
-    <test started-at="2026-01-08T15:12:01 IST" name="Default test" finished-at="2026-01-08T15:12:24 IST" duration-ms="22661">
+    <test started-at="2026-02-18T17:39:46 IST" name="Test" finished-at="2026-02-18T17:39:56 IST" duration-ms="9503">
       <class name="Automation.GmailTest">
-        <test-method is-config="true" signature="createPOMObject()[pri:0, instance:Automation.GmailTest@fbd1f6]" started-at="2026-01-08T15:12:01 IST" name="createPOMObject" finished-at="2026-01-08T15:12:07 IST" duration-ms="5462" status="PASS">
+        <test-method is-config="true" signature="createPOMObject()[pri:0, instance:Automation.GmailTest@4961f6af]" started-at="2026-02-18T17:39:46 IST" name="createPOMObject" finished-at="2026-02-18T17:39:49 IST" duration-ms="2251" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createPOMObject -->
-        <test-method signature="Find_mail_and_open()[pri:1, instance:Automation.GmailTest@fbd1f6]" started-at="2026-01-08T15:12:07 IST" name="Find_mail_and_open" finished-at="2026-01-08T15:12:14 IST" duration-ms="7153" status="PASS">
+        <test-method signature="Find_mail_and_open()[pri:1, instance:Automation.GmailTest@4961f6af]" started-at="2026-02-18T17:39:49 IST" name="Find_mail_and_open" finished-at="2026-02-18T17:39:53 IST" duration-ms="4127" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Find_mail_and_open -->
-        <test-method signature="validatePropertyCountInMail()[pri:2, instance:Automation.GmailTest@fbd1f6]" started-at="2026-01-08T15:12:14 IST" name="validatePropertyCountInMail" finished-at="2026-01-08T15:12:14 IST" duration-ms="483" status="PASS">
+        <test-method signature="See_Matching_Properties_CTA_redirection()[pri:14, instance:Automation.GmailTest@4961f6af]" started-at="2026-02-18T17:39:53 IST" name="See_Matching_Properties_CTA_redirection" description="Verify See Matching Properties CTA redirection" finished-at="2026-02-18T17:39:56 IST" duration-ms="3058" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validatePropertyCountInMail -->
-        <test-method signature="View_Photos_CTA_redirection()[pri:3, instance:Automation.GmailTest@fbd1f6]" started-at="2026-01-08T15:12:14 IST" name="View_Photos_CTA_redirection" finished-at="2026-01-08T15:12:24 IST" duration-ms="9462" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- View_Photos_CTA_redirection -->
+        </test-method> <!-- See_Matching_Properties_CTA_redirection -->
       </class> <!-- Automation.GmailTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

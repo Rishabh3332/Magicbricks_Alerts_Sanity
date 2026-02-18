@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite">
+
+  <test name="Test" thread-count="5">
+
+    <classes>
+
+      <class name="Automation.GmailTest">
+        <methods>
+          <include name="Find_mail_and_open"/>
+          <include name="See_Matching_Properties_CTA_redirection"/>
+        </methods>
+      </class>
+
+    </classes>
+
+  </test>
+
+</suite>
