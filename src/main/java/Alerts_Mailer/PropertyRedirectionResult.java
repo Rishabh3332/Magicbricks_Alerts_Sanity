@@ -7,6 +7,7 @@ public class PropertyRedirectionResult {
     private String price;
     private String location;
     private String redirectedUrl;
+    private String top_matches_propertyId;
     private Map<String, String> urlParams;
 
     // ---------- Getters & Setters ----------
@@ -15,6 +16,15 @@ public class PropertyRedirectionResult {
         return propertyType;   
     }
 
+    
+    public String getPropertyId() {
+        return top_matches_propertyId;
+    }
+
+    public void setPropertyId(String top_matches_propertyId) {
+        this.top_matches_propertyId = top_matches_propertyId;
+    }
+    
     public void setPropertyType(String propertyType) {
         this.propertyType = propertyType;
     }

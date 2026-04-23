@@ -2,30 +2,34 @@ package Automation;
 
 import Alerts_Mailer.BaseTest;
 import Alerts_Mailer.CardCTA;
-import Alerts_Mailer.GmailHomePage;
+import Alerts_Mailer.Day_Zero_PRS_Mailer;
 import Alerts_Mailer.PropertyRedirectionResult;
 import Alerts_Mailer.Subject_Line_excel;
 import Alerts_Mailer.TopMatchesPage;
+import Alerts_Mailer.UnsubscribePage;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
-public class GmailTest extends BaseTest {
+public class DayZero_PRS extends BaseTest {
 	
-	private GmailHomePage gmail;
+	private Day_Zero_PRS_Mailer day_0;
 	private PropertyRedirectionResult result;
 	private TopMatchesPage topMatchesPage;
 	Subject_Line_excel subject_Line_excel;
 	SoftAssert softAssert = new SoftAssert();
+	private UnsubscribePage unsubscribePage;
 
 	
 	@BeforeClass
 	public void createPOMObject() {
-		setup();
-	gmail=new GmailHomePage(driver);
+	setup();
+	day_0=new Day_Zero_PRS_Mailer(driver);
 	subject_Line_excel = new Subject_Line_excel(driver);
 	topMatchesPage = new TopMatchesPage(driver);
+	unsubscribePage = new UnsubscribePage(driver);
 
 	}
 	 
@@ -33,16 +37,16 @@ public class GmailTest extends BaseTest {
     public void Find_mail_and_open() throws Exception {
     	
     	String subject =subject_Line_excel.getCellValue("sheet1", 2, 1);
-    	gmail.openMailBySubject(subject);
+    	day_0.openMailBySubject(subject);
 //    	gmail.getPropertyCountFromMail();
 //    	gmail.Click_ViewDetail_CTA();
 //        gmail.Enter_email();
 //        CloseWindow();
     }
     
-    @Test(priority = 2)
+    @Test(priority = 2, enabled = true)
     public void validatePropertyCountInMail() {	
-        int propertyCount = gmail.getPropertyCountFromMail();
+        int propertyCount = day_0.getPropertyCountFromMail();
         if(propertyCount>0) {
         	System.out.println("➡ Total properties received in mail: " + propertyCount);
         }
@@ -50,9 +54,10 @@ public class GmailTest extends BaseTest {
         	softAssert.assertTrue(propertyCount > 0, "⚠️ No properties found in mail!");
 		    }
 		} 
-    @Test(priority = 3)
+    
+    @Test(priority = 3, enabled = true)
     public void View_Photos_CTA_redirection() {
-    	  result = gmail.Click_ViewDetail_CTA();
+    	  result = day_0.Click_ViewDetail_CTA();
     	
     	 System.out.println("📌 URL Parameters:");
     	 result.getUrlParams().forEach((key, value)->
@@ -67,7 +72,7 @@ public class GmailTest extends BaseTest {
 
 //    	    softAssert.assertAll();
     	}
-    @Test(priority = 4)
+    @Test(priority = 4, enabled = true)
     public void verify_property_price_consistency_between_mail_and_top_matches() {
 
      // capture mail data
@@ -84,7 +89,7 @@ public class GmailTest extends BaseTest {
 //        softAssert.assertAll();
     }
     
-    @Test(priority = 5)
+    @Test(priority = 5, enabled = true)
     public void Verify_BHK_and_Property_Type_Consistency() {
 
     	// capture mail data
@@ -112,7 +117,7 @@ public class GmailTest extends BaseTest {
                 .trim();
     }
     
-    @Test(priority = 6)
+    @Test(priority = 6, enabled = true)
     public void Verify_Project_and_Location_Consistency() {
 
         // Click CTA and capture mail data
@@ -143,7 +148,7 @@ public class GmailTest extends BaseTest {
 //        softAssert.assertAll();
     }
     
-    @Test(priority = 7,description = "Verify redirection to Listing Detail Page (LDP) on clicking a property card from Top 									 										Matches page")
+    @Test(priority = 7,enabled = true, description = "Verify redirection to Listing Detail Page (LDP) on clicking a property card from Top 									 										Matches page")
     	public void verify_redirection_to_LDP_on_clicking_property_card() {
 
     		//Click on property card (excluding CTAs)
@@ -161,7 +166,7 @@ public class GmailTest extends BaseTest {
 //    	    softAssert.assertAll();
     	}
     
-    @Test(priority = 8,description = "Verify Not Interested CTA functionality on Top Matches page")
+    @Test(priority = 8, enabled = true, description = "Verify Not Interested CTA functionality on Top Matches page")
     	public void verify_Not_Interested_CTA_functionality_on_Top_Matches_page() {
     	
         // Get card index before click
@@ -192,7 +197,7 @@ public class GmailTest extends BaseTest {
 //        softAssert.assertAll();
     }    	
     
-    @Test(priority = 9, description = "Verify Yes, Connect Me CTA functionality on Top Matches page")
+    @Test(priority = 9,enabled = true, description = "Verify Yes, Connect Me CTA functionality on Top Matches page")
     public void verify_Yes_Connect_Me_CTA_functionality_on_Top_Matches_page() {
 
         int beforeIndex = topMatchesPage.getCurrentCardIndex();
@@ -216,10 +221,10 @@ public class GmailTest extends BaseTest {
 //        softAssert.assertAll();
     }
     
-    @Test(priority = 11, description = "Verify View Number / View Owner's Number CTA redirection")
+    @Test(priority = 11, enabled = true, description = "Verify View Number / View Owner's Number CTA redirection")
     	public void View_Number_CTA_redirection() {
 
-    	   	result = gmail.Click_ViewNumber_CTA();
+    	   	result = day_0.Click_ViewNumber_CTA();
 
     	    // ✅ Assertion: User lands on Top Matches page
     	    softAssert.assertTrue(result.getRedirectedUrl().contains("magicbricks.com"),
@@ -235,10 +240,10 @@ public class GmailTest extends BaseTest {
 
 //    	    softAssert.assertAll();
     	}
-    @Test(priority = 14,description = "Verify See Matching Properties CTA redirection")
+    @Test(priority = 14, enabled = false , description = "Verify See Matching Properties CTA redirection")
     	public void See_Matching_Properties_CTA_redirection() {
 
-    	    PropertyRedirectionResult result =  gmail.Click_SeeMatchingProperties_CTA();
+    	    PropertyRedirectionResult result =  day_0.Click_SeeMatchingProperties_CTA();
     	   
     	    System.out.println("📌 URL Parameters:");
 	       	result.getUrlParams().forEach((key, value)->
@@ -262,6 +267,34 @@ public class GmailTest extends BaseTest {
     	    softAssert.assertAll();
     	    
     	}
+    
+    @Test(priority = 15,enabled = false, description = "Verify Unsubscribe CTA redirection")
+	    public void Verify_Unsubscribe_CTA_redirection() {
+	
+	        PropertyRedirectionResult result = day_0.click_Unsubscribe();
+	
+	        System.out.println("📌 Unsubscribe URL: " + result.getRedirectedUrl());
+	
+	        // ✅ Validate user redirected to unsubscribe page
+	        softAssert.assertTrue(result.getRedirectedUrl().contains("unSubscribeMailer"),
+	                "❌ User is not redirected to unsubscribe page");
+	        
+	     // ✅ Verify unsubscribe page loaded
+	        softAssert.assertTrue(unsubscribePage.selectThirdUnsubscribeReason(),"❌ 3rd unsubscribe option was not selected");
+	        
+	        softAssert.assertTrue(unsubscribePage.isUnsubscribeSuccessPageDisplayed(), "❌ Unsubscribe Success page is NOT displayed.");
+	        
+	     // ✅ Click Go to Magicbricks CTA
+	        unsubscribePage.clickGoToMagicbricksCTA();
 
+	     //Validate redirection to homepage
+	        String currentUrl = driver.getCurrentUrl();
+	        softAssert.assertTrue(currentUrl.contains("magicbricks.com"),
+	                "❌ Not redirected to Magicbricks homepage");
+	        
+	        softAssert.assertAll();
+	    }
+
+    
 
 }

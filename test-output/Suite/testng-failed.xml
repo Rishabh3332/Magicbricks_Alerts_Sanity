@@ -5,9 +5,8 @@
     <classes>
       <class name="Automation.GmailTest">
         <methods>
-          <include name="See_Matching_Properties_CTA_redirection"/>
+          <include name="Verify_Unsubscribe_CTA_redirection"/>
           <include name="createPOMObject"/>
-          <include name="Find_mail_and_open"/>
         </methods>
       </class> <!-- Automation.GmailTest -->
     </classes>

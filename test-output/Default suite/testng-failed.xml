@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Automation.GmailTest">
+      <class name="Automation.Rental">
         <methods>
-          <include name="See_Matching_Properties_CTA_redirection"/>
-          <include name="createPOMObject"/>
+          <include name="verify_redirection_to_LDP_on_clicking_property_card"/>
+          <include name="setUpPages"/>
         </methods>
-      </class> <!-- Automation.GmailTest -->
+      </class> <!-- Automation.Rental -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

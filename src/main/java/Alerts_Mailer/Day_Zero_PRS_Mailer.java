@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,15 +20,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
-public class GmailHomePage {
+public class Day_Zero_PRS_Mailer {
 
     WebDriver driver;
     WebDriverWait wait;
     Subject_Line_excel subject_Line_excel;
     BaseTest base;
-    
-    
-  private  PropertyRedirectionResult result;
+    PropertyRedirectionResult result;
   //  SoftAssert softAssert = new SoftAssert();
 
     @FindBy(id = "identifierId")
@@ -41,7 +40,7 @@ public class GmailHomePage {
 //    private WebElement searchBoxElement;
 
     // Constructor
-    public GmailHomePage(WebDriver driver) {
+    public Day_Zero_PRS_Mailer(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver, this);
@@ -133,6 +132,8 @@ public class GmailHomePage {
 //	    System.out.println(list[1] );
 	    // 🔴 View Photos CTA inside SAME CARD
 	    WebElement viewPhotosCTA = card.findElement(By.xpath(".//a[normalize-space()='View Photos']"));
+	    JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView(true);",viewPhotosCTA);
 	    wait.until(ExpectedConditions.elementToBeClickable(viewPhotosCTA)).click();
 	    
 	    ArrayList<String> add=new ArrayList<String>(driver.getWindowHandles());
@@ -305,7 +306,41 @@ public class GmailHomePage {
 	        
 	    }
 	    
+	 // Unsubscribe locator
+	    private By unsubscribeLink = By.xpath("//a[normalize-space()='Unsubscribe']");
 	    
+	    // Click Unsubscribe
+	    public PropertyRedirectionResult click_Unsubscribe() {
+	        
+	    	WebElement unsubscribe = wait.until(ExpectedConditions.elementToBeClickable(unsubscribeLink));
+	    	// Scroll to element
+	    	JavascriptExecutor js = (JavascriptExecutor) driver;
+	    	js.executeScript("arguments[0].scrollIntoView({block: 'center'});", unsubscribe);
+	        unsubscribe.click();
+	        System.out.println("➡ Clicked on Unsubscribe CTA");
+
+	        // 🔄 Switch to new tab 
+	        base.switchToTab(driver, 1);
+
+	        // 🌐 Wait for unsubscribe page to load
+	        wait.until(ExpectedConditions.urlContains("unSubscribeMailer"));
+
+	        String unsuscribe_redirectedUrl = driver.getCurrentUrl();
+	        System.out.println("➡ Redirected URL: " + unsuscribe_redirectedUrl);
+
+	        // 🔍 Extract URL parameters
+	        Map<String, String> params = extractUrlParams(unsuscribe_redirectedUrl);
+
+	        // 📦 Prepare DTO result
+	        PropertyRedirectionResult result = new PropertyRedirectionResult();
+	        result.setRedirectedUrl(unsuscribe_redirectedUrl);
+	        result.setUrlParams(params);
+
+	        // (Optional) Switch back to mail tab
+//	        base.switchToTab(driver, 0);
+
+	        return result;
+	    }
 	    
     
     
